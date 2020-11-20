@@ -50,7 +50,6 @@ export class ClaimBatchComponent implements OnInit {
 
   modalDetails(batch_id : number){
     this.usersService.getUsers().subscribe((stream : Array<Claim>) =>{
-      stream.pipe()
       console.table(stream)
       this.dataSource = new MatTableDataSource(stream);
     });
