@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {Observable} from 'rxjs';
 
 export interface Claim {
-  batch_id: string;
+  batch_id: number;
   claim_id: string;
   emp_id: string;
   emp_name: string;
@@ -25,14 +25,17 @@ export class ClaimBatchComponent implements OnInit {
   dataSource: MatTableDataSource <Claim> ;
   batch_id: number;
   temp: Array<Claim>;
+  showModal: boolean = false;
 
  constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe((stream : Array<Claim>) =>{
+    /* this.usersService.getUsers().subscribe((stream : Array<Claim>) =>{
+
+      stream = stream.filter(x=> x.batch_id === this.batch_id);
       console.table(stream)
       this.dataSource = new MatTableDataSource(stream);
-    });
+    }); */
   }
 
   ChangeViewDateFormat(d: Date): any {
@@ -50,9 +53,19 @@ export class ClaimBatchComponent implements OnInit {
 
   modalDetails(batch_id : number){
     this.usersService.getUsers().subscribe((stream : Array<Claim>) =>{
+      stream = stream.filter(x=> x.batch_id === batch_id);
       console.table(stream)
       this.dataSource = new MatTableDataSource(stream);
     });
+  }
+
+  open(){
+    if (false){
+      this.showModal = false;
+    }
+    else{
+      this.showModal = true;
+    }
   }
 }
 
