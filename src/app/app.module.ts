@@ -39,6 +39,7 @@ import { HeaderComponent } from './nav/header/header.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogGenerateReportDialogComponent } from './pages/viewclaim/dialog-generate-report-dialog/dialog-generate-report-dialog.component';
+import { ClaimBatchComponent } from './pages/claim-batch/claim-batch.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { DialogGenerateReportDialogComponent } from './pages/viewclaim/dialog-ge
     HrComponent,
     HeaderComponent,
     DialogGenerateReportDialogComponent,
+    ClaimBatchComponent,
   ],
   imports: [
     BrowserModule,

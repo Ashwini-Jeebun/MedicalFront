@@ -11,13 +11,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { saveAs } from 'file-saver';
 import { Router } from '@angular/router';
+
 export interface UserData {
   emp_id: string;
   emp_name: string;
   date_submit: string;
   batch_id: string;
-  //claim_date: string;
-  // despatch_date: string;
   batch_date_to: string;
   claim_id: string;
 }
@@ -32,11 +31,9 @@ export class ViewclaimComponent implements OnInit {
   checked = false;
   Alldata: Array<UserData>;
   @ViewChild('TABLE') table: ElementRef;
-
   public range = { start: null, end: null };
-
   _loading = true;
-  // displayedColumns: string[] = ['id', 'Name', 'Email','Role', 'Department', 'Cost_Centre','Region','Address'];
+ 
   displayedColumns: string[] = [
     'emp_id',
     'emp_name',
@@ -44,10 +41,7 @@ export class ViewclaimComponent implements OnInit {
     'date_submit',
     'batch_date_to',
     'batch_id',
-    'claim_id',
-
-    //'claim_date',
-    //'despatch_date',
+    'claim_id'
   ];
 
   // FILTERS
@@ -108,13 +102,12 @@ export class ViewclaimComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  
   ngOnInit() {
     this.usersService.getUsers().subscribe(
       (data: Array<UserData>) => {
         this.Alldata = data;
-
-        //this._loading=false;
-        //this.data = res;
+        console.table(data)  
         this.allSubmissions = data;
         this.dataSource = new MatTableDataSource(
           data.map((d) => {
@@ -125,17 +118,16 @@ export class ViewclaimComponent implements OnInit {
                 : 'pending',
             };
           })
-        );
-        console.log(data);
-
-        //this.source = new LocalDataSource(this.data);
-        // setTimeout(() => {this._loading=false},2000)
+        );    
+   
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
       (err) => console.log(err)
     );
   }
+
+
   goback() {
     this.router.navigate(['/hr']);
   }

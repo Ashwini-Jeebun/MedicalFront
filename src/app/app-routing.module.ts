@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { ViewclaimComponent } from './pages/viewclaim/viewclaim.component';
 import { MessengerComponent } from './pages/messenger/messenger.component';
+import { ClaimBatchComponent } from './pages/claim-batch/claim-batch.component';
 import { HrComponent } from './pages/hr/hr.component';
 import { AuthGuardGuard } from './services/auth/auth-guard.guard';
 import { AuthGuard } from './services/auth/auth.guard';
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'viewClaim',
     component: ViewclaimComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'claim-batch',
+    component: ClaimBatchComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -11,7 +11,8 @@ export class UsersService {
 
   getUsers(): Observable<any> {
     return this.http.get(`${environment.apiUrl}/claims`);
-  }
+  }  
+
   getStats(dateFrom, dateTo) {
     let url = `${environment.apiUrl}/range?dateFrom=${dateFrom}&dateTo=${dateTo}`;
     console.log(dateFrom, dateTo, url);

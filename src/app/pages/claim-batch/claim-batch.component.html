@@ -1,0 +1,83 @@
+<div class="main">
+
+    <a
+    class="nav-link"
+    data-toggle="modal"
+    data-target="#basicExample"
+    (click)="frame.show()"
+    mdbWavesEffect
+  >
+    Show modal
+  </a>
+
+  <div
+    mdbModal
+    #frame="mdbModal"
+    class="modal fade"
+    id="frameModalTop"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Batch Details</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="claim_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Claim ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.claim_id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="emp_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.emp_name}} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="number_of_claims">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Claims </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.number_of_claims}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date_submit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date Submitted </mat-header-cell>
+            <mat-cell *matCellDef="let row" > {{ ChangeViewDateFormat(row.date_submit) }} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a
+          type="button"
+          mdbBtn
+          color="danger"
+          outline="true"
+          class="waves-light"
+          mdbWavesEffect
+          data-dismiss="modal"
+          (click)="frame.hide()"
+          >Close</a
+        >
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+
